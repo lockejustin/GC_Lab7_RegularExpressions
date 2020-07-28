@@ -11,10 +11,11 @@ namespace GC_Lab7_Regular_Expressions
 
             while (continueProgram)
             {
-                ValidateName(PromptForInput("Please enter a valid name: "));
-                ValidateEmail(PromptForInput("Please enter a valid email: "));
-                ValidatePhoneNumber(PromptForInput("Please enter a valid phone number: "));
-                ValidateDate(PromptForInput("Please enter a valid date: "));
+                //ValidateName(PromptForInput("Please enter a valid name: "));
+                //ValidateEmail(PromptForInput("Please enter a valid email: "));
+                //ValidatePhoneNumber(PromptForInput("Please enter a valid phone number (xxx-xxx-xxxx): "));
+                //ValidateDate(PromptForInput("Please enter a valid date (mm/dd/yyyy): "));
+                ValidateHTML(PromptForInput("Please enter a valid HTML tag: "));
 
                 continueProgram = ContinueProgramYesNoPrompt("Would you like to go again?");
             }
@@ -27,6 +28,14 @@ namespace GC_Lab7_Regular_Expressions
             Console.Write(message);
             string input = Console.ReadLine();
             return input;
+        }
+
+        public static void ValidateHTML(string code)
+        {
+            if (Regex.IsMatch(code, @"<([A-z][A-z0-9]*)\b[^>]*>(.*?)</\1>"))  //checks for valid HTML code 
+                Console.WriteLine("This is a valid HTML tag!");
+            else
+                Console.WriteLine("This HTML tag is invalid!");
         }
 
         public static void ValidateDate(string date)
