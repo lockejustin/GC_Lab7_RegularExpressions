@@ -11,10 +11,10 @@ namespace GC_Lab7_Regular_Expressions
 
             while (continueProgram)
             {
-                //ValidateName(PromptForInput("Please enter a valid name: "));
-                //ValidateEmail(PromptForInput("Please enter a valid email: "));
-                //ValidatePhoneNumber(PromptForInput("Please enter a valid phone number (xxx-xxx-xxxx): "));
-                //ValidateDate(PromptForInput("Please enter a valid date (mm/dd/yyyy): "));
+                ValidateName(PromptForInput("Please enter a valid name: "));
+                ValidateEmail(PromptForInput("Please enter a valid email: "));
+                ValidatePhoneNumber(PromptForInput("Please enter a valid phone number (xxx-xxx-xxxx): "));
+                ValidateDate(PromptForInput("Please enter a valid date (dd/mm/yyyy): "));
                 ValidateHTML(PromptForInput("Please enter a valid HTML tag: "));
 
                 continueProgram = ContinueProgramYesNoPrompt("Would you like to go again?");
@@ -40,7 +40,7 @@ namespace GC_Lab7_Regular_Expressions
 
         public static void ValidateDate(string date)
         {
-            if (Regex.IsMatch(date, @"^[0-9]{2}[/][0-9]{2}[/][0-9]{4}$"))
+            if (Regex.IsMatch(date, @"\b([012][0-9]|[3][01])[/]([0][0-9]|[1][012])[/][012][0-9][0-9][0-9]\b"))  //checks for proper date format, unable to check for proper number of days per month
                 Console.WriteLine("This is a valid date entry!");
             else
                 Console.WriteLine("This date entry is invalid!");
@@ -66,7 +66,7 @@ namespace GC_Lab7_Regular_Expressions
 
         public static void ValidateName(string name)
         {
-            if (Regex.IsMatch(name, @"\b[A-Z]{1}[A-z]{0,29}\b")) //checks that first letter is upper case, all characters are alpha, and there are less than 30 characters
+            if (Regex.IsMatch(name, @"^[A-Z]{1}[A-z]{0,29}$")) //checks that first letter is upper case, all characters are alpha, and there are less than 30 characters, no spaces
                 Console.WriteLine("This is a valid name!");
             else
                 Console.WriteLine("This name is invalid!");
